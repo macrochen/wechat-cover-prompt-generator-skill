@@ -1,25 +1,20 @@
 ---
 name: wechat-cover-prompt-generator-skill
-description: 专门为微信公众号文章生成封面绘图提示词。能够深度分析内容并转化为视觉意象。
+description: 微信文章封面提示词生成。它是 baoyu-cover-image 的“提示词提取模块”，专用于剥离绘图动作，仅产出指令。
 ---
 
 # WeChat Cover Prompt Generator
 
-本技能是一个原子逻辑技能，负责将文本内容转化为高质量的绘图指令（Prompts）。
+本技能是 `baoyu-cover-image` 体系的**轻量级前端**，旨在复用其视觉资产并产出纯中文绘图指令。
 
-## 核心职责
-1. **内容分析**：提取文章的核心关键词、情感基调和视觉隐喻。
-2. **风格匹配**：根据内容性质推荐最合适的视觉风格组合（参考 Type x Style 矩阵）。
-3. **Prompt 构建**：生成包含主体、背景、光影、构图、渲染质量等要素的结构化提示词（适配 Imagen 3 / Midjourney）。
+## 核心复用逻辑
+1. **指令模版**：**必须**阅读并遵循 `.gemini/skills/baoyu-cover-image/references/base-prompt.md` 中的 Prompt 构建规范。
+2. **视觉参数**：参考其 `references/` 下的 `types.md`、`palettes/` 和 `renderings/`。
+
+## 任务目标
+接收文本，按照 `baoyu-cover-image` 的 5 维度标准（Type, Palette, Rendering, Text, Mood）进行分析，并输出一份**纯中文**的、高质量的提示词。
 
 ## 交互流程
-1. **[分析]** 输入文章内容，分析关键词。
-2. **[展示]** 展示推荐风格矩阵供用户选择。
-3. **[生成]** 根据所选风格，生成详细的纯中文提示词。
-4. **[输出]** 输出提示词并保存至临时文件，供后续自动化工具使用。
-
-## 输出规范
-必须包含：
-- **视觉主题**：画面描述。
-- **绘图提示词 (Prompt)**：仅限中文描述，适配高质量生图。
-- **配置详情**：色调、构图等。
+1. **[加载]** 读取 `baoyu-cover-image` 的全套视觉标准和 `base-prompt.md`。
+2. **[推荐]** 向用户展示选定的维度组合。
+3. **[产出]** 生成提示词，结束本技能任务（不触发任何绘图动作）。
