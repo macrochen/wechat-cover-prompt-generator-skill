@@ -8,7 +8,7 @@ description: 微信文章封面提示词生成。它是 baoyu-cover-image 的“
 本技能是 `baoyu-cover-image` 体系的**轻量级前端**，旨在复用其视觉资产并产出纯中文绘图指令。
 
 ## 核心复用逻辑
-1. **指令模版**：**必须**阅读并遵循 `.gemini/skills/baoyu-cover-image/references/base-prompt.md` 中的 Prompt 构建规范。
+1. **指令模版**：**必须**阅读并遵循 `~/.agents/skills/baoyu-cover-image/references/base-prompt.md` 中的 Prompt 构建规范。
 2. **视觉参数**：参考其 `references/` 下的 `types.md`、`palettes/` 和 `renderings/`。
 
 ## 任务目标
